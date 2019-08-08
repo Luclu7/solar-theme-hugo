@@ -23,6 +23,21 @@
 		<div id="page">
 			<div id="sidebar">
 				{{ partial "navigation.html" . }}
+				{{ if .IsTranslated }}
+				{{ range .Translations }}
+				{{ if eq .Site.Language.Lang "en" }}
+					<li><a title="English" href="{{ .RelPermalink }}">English</a></li>
+				{{ else }}
+					<li><a title="French" href="{{ .RelPermalink }}">French</a></li>
+				{{ end }}
+				{{ end }}
+				{{ else }}
+				{{ if eq .Site.Language.Lang "no" }}
+					<li><a title="English" href="/en">English</a></li>
+				{{ else }}
+					<li><a title="French" href="/fr">French version</a></li>
+				{{ end }}
+			{{ end }}
 			</div>
 
 			<div id="content">
@@ -30,7 +45,8 @@
 			</div>
 				{{ if .PrevInSection }}previous post: <a href="{{ .PrevInSection.RelPermalink }}">{{ .PrevInSection.Title }}</a>{{ end }}
 				{{ if .NextInSection }}next post: <a href="{{ .NextInSection.RelPermalink }}">{{ .NextInSection.Title }}</a>{{ end }}
-			
+
+
 			<footer id="footer">
 		
 				<p class="copyright">
