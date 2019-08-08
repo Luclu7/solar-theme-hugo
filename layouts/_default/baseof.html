@@ -28,8 +28,11 @@
 			<div id="content">
 				{{ block "main" . }}{{ end }}
 			</div>
-
+				{{ if .PrevInSection }}previous post: <a href="{{ .PrevInSection.RelPermalink }}">{{ .PrevInSection.Title }}</a>{{ end }}
+				{{ if .NextInSection }}next post: <a href="{{ .NextInSection.RelPermalink }}">{{ .NextInSection.Title }}</a>{{ end }}
+			
 			<footer id="footer">
+		
 				<p class="copyright">
 					{{ if .Site.Copyright }}
 						{{ .Site.Copyright }}
